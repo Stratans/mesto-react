@@ -101,7 +101,7 @@ function App() {
       {/* Попап "Просмотр картинки" */}
       <ImagePopup
         isOpen={isViewPopupOpen && 'popup_opened'}
-        name='view'
+        name='show'
         card={selectedCard}
         onClose={closeAllPopups}
       />
