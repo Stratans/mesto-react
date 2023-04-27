@@ -4,7 +4,7 @@ import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
-import ImagePopup from "./ImagePopup";
+import ImagePopup from './ImagePopup';
 
 function App() {
 
@@ -13,7 +13,6 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isViewPopupOpen, setIsViewPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
-
 
   const handleCardClick = (props) => {
     setSelectedCard(props);
@@ -28,7 +27,7 @@ function App() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
-    setIsViewPopupOpen(false)
+    setIsViewPopupOpen(false);
     setSelectedCard({});
   };
 
@@ -123,7 +122,6 @@ function App() {
           required />
         <span className='popup__input-error avatar-error'></span>
       </PopupWithForm>
-
 
       {/* Попап "Подтверждение удаления карточки"  */}
       <PopupWithForm name='delete' title='Вы уверены?' buttonText='Да' />
