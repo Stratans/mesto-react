@@ -1,4 +1,6 @@
-export default class Api {
+import { token, address } from './constants'
+
+class Api {
 	constructor({ token, address }) {
 		this._token = token;
 		this._address = address;
@@ -86,3 +88,5 @@ export default class Api {
 		}).then((res) => this._checkResponse(res))
 	};
 };
+
+export const api = new Api({ token, address }) 

@@ -1,9 +1,7 @@
 function PopupWithForm(props) {
 	return (
 		<div className={`popup popup_type_${props.name} ${props.isOpen}`}>
-
 			<div className='popup__container'>
-
 				<button
 					className='popup__close'
 					type='button'
@@ -17,14 +15,11 @@ function PopupWithForm(props) {
 					noValidate
 				>
 					{props.children}
-
 					<button
 						className='popup__btn-save'
 						type='submit'
 					>
-						{((props.name === 'edit' || props.name === 'avatar') && 'Сохранить') ||
-							(props.name === 'add' && 'Создать') ||
-							(props.name === 'delete' && 'Да')}
+						{props.buttonText}
 					</button>
 				</form>
 			</div>

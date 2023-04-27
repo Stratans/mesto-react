@@ -1,19 +1,18 @@
-import React from 'react';
+//import React from 'react';
 import { useState } from 'react';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
-//import ImagePopup from "./ImagePopup";
-
+import ImagePopup from "./ImagePopup";
 
 function App() {
 
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
-  const [isViewPopupOpen, setIsViewPopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState({});
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [isViewPopupOpen, setIsViewPopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState({});
 
 
   const handleCardClick = (props) => {
@@ -29,10 +28,9 @@ function App() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
-    setIsViewPopupOpen({});
-    console.log(777);
+    setIsViewPopupOpen(false)
+    setSelectedCard({});
   };
-
 
   return (
     <div className='page'>
@@ -47,13 +45,12 @@ function App() {
 
       <Footer />
 
-
-
       {/* Попап "Редактировать профиль" */}
       <PopupWithForm
         name='edit'
         title='Редактировать профиль'
         isOpen={isEditProfilePopupOpen && 'popup_opened'}
+        buttonText='Сохранить'
         onClose={closeAllPopups}
       >
         <input
@@ -76,14 +73,13 @@ function App() {
         <span className='popup__input-error input-about-error'></span>
       </PopupWithForm>
 
-
-
       {/* Попап "Добавление места" */}
       <PopupWithForm
         name='add'
         title='Добавление места'
         isOpen={isAddPlacePopupOpen && 'popup_opened'}
         onClose={closeAllPopups}
+        buttonText='Создать'
       >
         <input
           className='popup__input popup__input_place_name'
@@ -103,16 +99,13 @@ function App() {
         <span className='popup__input-error input-place-url-error'></span>
       </PopupWithForm>
 
-
-
       {/* Попап "Просмотр картинки" */}
-      {/* <ImagePopup
+      <ImagePopup
         isOpen={isViewPopupOpen && 'popup_opened'}
         name='view'
         card={selectedCard}
         onClose={closeAllPopups}
-      /> */}
-
+      />
 
       {/* Попап "Обновить аватар"  */}
       <PopupWithForm
@@ -120,6 +113,7 @@ function App() {
         title='Обновить аватар'
         isOpen={isEditAvatarPopupOpen && 'popup_opened'}
         onClose={closeAllPopups}
+        buttonText='Сохранить'
       >
         <input
           className='popup__input popup__input_avatar'
@@ -131,35 +125,9 @@ function App() {
       </PopupWithForm>
 
 
-
-
-
-
       {/* Попап "Подтверждение удаления карточки"  */}
-      <PopupWithForm name='delete' title='Вы уверены?' />
-
-
-
-      {/* Темплейт (шаблон) для элементов  */}
-      <template id='element-template'>
-        <article className='element'>
-          <img className='element__img' src='#' alt='#' />
-          <div className='element__info'>
-            <h2 className='element__title'></h2>
-            <div className='element__like-container' >
-              <button type='button' className='element__btn-like'></button>
-              <p className='element__like-number'></p>
-            </div>
-          </div>
-          <button type='button' className='element__btn-trash'></button>
-        </article>
-      </template>
-
-
-
-
+      <PopupWithForm name='delete' title='Вы уверены?' buttonText='Да' />
     </div>
-
   )
 }
 
