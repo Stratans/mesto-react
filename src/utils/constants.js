@@ -11,28 +11,28 @@ export const options = {
 	errorClass: 'popup__input-error_visible'
 };
 
-// константы для формы редактирования:
-export const popupEditBtn = document.querySelector('.profile__edit-btn'); // Кнопка «редактировать»
-export const popupEditForm = document.querySelector('.popup__form_type_edit'); // находим форму редактирования профиля
+// // константы для формы редактирования:
+// export const popupEditBtn = document.querySelector('.profile__edit-btn'); // Кнопка «редактировать»
+// export const popupEditForm = document.querySelector('.popup__form_type_edit'); // находим форму редактирования профиля
 
-// константы для добавления места:
-export const placeFormAdd = document.querySelector('.popup__form_type_add'); // форма добавления места
-export const placeBtnAdd = document.querySelector('.profile__add-btn'); // кнопка "добавить" место
+// // константы для добавления места:
+// export const placeFormAdd = document.querySelector('.popup__form_type_add'); // форма добавления места
+// export const placeBtnAdd = document.querySelector('.profile__add-btn'); // кнопка "добавить" место
 
-// константы для изменения аватарки:
-export const profileBtnUpdateAvatar = document.querySelector('.profile__avatar-container');
-export const updateAvatarForm = document.querySelector('.popup__form_edit-avatar');
+// // константы для изменения аватарки:
+// export const profileBtnUpdateAvatar = document.querySelector('.profile__avatar-container');
+// export const updateAvatarForm = document.querySelector('.popup__form_edit-avatar');
 
-// константа для всех попапов:
-export const popupSelector = document.querySelectorAll('.popup');
+// // константа для всех попапов:
+// export const popupSelector = document.querySelectorAll('.popup');
 
-// КОНСТАНТЫ-СЕЛЕКТОРЫ:
-export const containerSelector = '.elements';
-export const popupWithImageSelector = '.popup_type_show';
-export const popupAddCardSelector = '.popup_type_add';
-export const popupEditProfileSelector = '.popup_type_edit';
-export const nameSelector = '.profile__name';
-export const aboutSelector = '.profile__job';
-export const popupEditAvatarSelector = '.popup_type_avatar';
-export const popupDeleteSelector = '.popup_type_delete';
-export const avatarSelector = '.profile__avatar';
+// // КОНСТАНТЫ-СЕЛЕКТОРЫ:
+// export const containerSelector = '.elements';
+// export const popupWithImageSelector = '.popup_type_show';
+// export const popupAddCardSelector = '.popup_type_add';
+// export const popupEditProfileSelector = '.popup_type_edit';
+// export const nameSelector = '.profile__name';
+// export const aboutSelector = '.profile__job';
+// export const popupEditAvatarSelector = '.popup_type_avatar';
+// export const popupDeleteSelector = '.popup_type_delete';
+// export const avatarSelector = '.profile__avatar';

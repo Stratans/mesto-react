@@ -1,5 +1,6 @@
 import React from "react";
 
+
 function ImagePopup(props) {
   return (
     <div
@@ -22,6 +23,6 @@ function ImagePopup(props) {
       </div>
     </div>
   );
-}
+};
 
 export default ImagePopup;

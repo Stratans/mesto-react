@@ -1,31 +1,11 @@
-import { useState, useEffect } from 'react';
-import { api } from '../utils/Api.js';
+import { useContext } from 'react';
 import Card from './Card.js';
+import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
+
 
 function Main(props) {
-	const [userName, setUserName] = useState('');
-	const [userDescription, setUserDescription] = useState('');
-	const [userAvatar, setUserAvatar] = useState('');
-	const [cards, setCards] = useState([]);
 
-	function setUserData() {
-		api.getUserInfo().then(userData => {
-			setUserName(userData.name);
-			setUserDescription(userData.about);
-			setUserAvatar(userData.avatar);
-		}).catch(err => { console.log(err) })
-	};
-
-	function setInitialCards() {
-		api.getInitialCards().then(cardData => {
-			setCards(cardData)
-		}).catch(err => { console.log(err) })
-	};
-
-	useEffect(() => {
-		setUserData()
-		setInitialCards()
-	}, []);
+	const currentUser = useContext(CurrentUserContext);
 
 	return (
 		<main className='content'>
@@ -33,26 +13,38 @@ function Main(props) {
 				<div className='profile__avatar-container' onClick={props.onEditAvatar}>
 					<img
 						className='profile__avatar'
-						src={userAvatar}
-						alt='пользовательский аватар' />
+						src={currentUser.avatar}
+						alt='пользовательский аватар'
+					/>
 				</div>
 				<div className='profile__info'>
-					<h1 className='profile__name'>{userName}</h1>
+					<h1 className='profile__name'>{currentUser.name}</h1>
 					<button
 						type='button'
 						className='profile__edit-btn'
-						onClick={props.onEditProfile}></button>
-					<p className='profile__job'>{userDescription}</p>
+						onClick={props.onEditProfile}
+					></button>
+					<p className='profile__job'>{currentUser.about}</p>
 				</div>
-				<button type='button' className='profile__add-btn' onClick={props.onAddPlace}></button>
+				<button
+					type='button'
+					className='profile__add-btn'
+					onClick={props.onAddPlace}>
+				</button>
 			</section>
 			<section className='elements' aria-label='Фотогалерея'>
-				{cards.map(card => (
-					<Card key={card._id} card={card} onCardClick={props.onCardClick} />
+				{props.cards.map(card => (
+					<Card
+						key={card._id}
+						card={card}
+						onCardClick={props.onCardClick}
+						onCardLike={props.onCardLike}
+						onCardDelete={props.onCardDelete}
+					/>
 				))}
 			</section>
 		</main>
-	)
-}
+	);
+};
 
 export default Main

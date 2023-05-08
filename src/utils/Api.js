@@ -1,5 +1,6 @@
 import { token, address } from './constants'
 
+
 class Api {
 	constructor({ token, address }) {
 		this._token = token;
@@ -67,7 +68,7 @@ class Api {
 	};
 
 	// публичный метод для лайк/анлайк
-	toggleLike({ cardId, isLiked }) {
+	toggleLike(cardId, isLiked) {
 		return isLiked ? this._removeLike(cardId) : this._addLike(cardId)
 	};
 
