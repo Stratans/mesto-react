@@ -31,7 +31,8 @@ function App() {
 
     api.toggleLike(element._id, isLiked).then((newCard) => {
       setCards((state) => state.map((c) => c._id === element._id ? newCard : c))
-    });
+    })
+    .catch(err => { console.log(err) })
   };
 
   function handleCardDelete(cardToDelete) {
@@ -62,7 +63,7 @@ function App() {
       .catch(err => { console.log(err) })
   };
 
-  function handleAddplace({ name, link }) {
+  function handleAddPlace({ name, link }) {
     api.setCard({ name, link })
       .then((newCard) => {
         setCards([newCard, ...cards])
@@ -71,25 +72,15 @@ function App() {
       .catch(err => { console.log(err) })
   };
 
-  function setInitialCards() {
-    api
-      .getInitialCards()
-      .then(cardData => {
-        setCards(cardData)
-      })
-      .catch(err => { console.log(err) })
-  };
-
-  useEffect(() => {
-    setInitialCards()
-  }, []);
-
-  useEffect(() => {
-    api
-      .getUserInfo()
-      .then(userData => setCurrentUser(userData))
-      .catch(err => { console.log(err) })
-  }, []);
+useEffect(() => {
+  Promise.all([api.getUserInfo(), api.getInitialCards()])
+    .then(([userInfo, initialCards]) => {
+      setCurrentUser(userInfo);
+      setCards(initialCards);
+    })
+    .catch(err => { console.log(err) })
+}, []);
+  
 
   const handleEditProfileClick = () => setIsEditProfilePopupOpen(true);
   const handleAddPlaceClick = () => setIsAddPlacePopupOpen(true);
@@ -122,7 +113,7 @@ function App() {
 
         {/* Попап "Редактировать профиль" */}
         <EditProfilePopup
-          isOpen={isEditProfilePopupOpen && 'popup_opened'}
+          isOpen={isEditProfilePopupOpen}
           buttonText='Сохранить'
           onClose={closeAllPopups}
           onUpdateProfile={handleUpdateProfile}
@@ -130,7 +121,7 @@ function App() {
 
         {/* Попап "Обновить аватар"  */}
         <EditAvatarPopup
-          isOpen={isEditAvatarPopupOpen && 'popup_opened'}
+          isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
           buttonText='Сохранить'
           onUpdateAvatar={handleUpdateAvatar}
@@ -138,15 +129,15 @@ function App() {
 
         {/* Попап "Добавление места" */}
         <AddPlacePopup
-          isOpen={isAddPlacePopupOpen && 'popup_opened'}
+          isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
           buttonText='Создать'
-          onAddPlace={handleAddplace}
+          onAddPlace={handleAddPlace}
         />
 
         {/* Попап "Просмотр картинки" */}
         <ImagePopup
-          isOpen={isViewPopupOpen && 'popup_opened'}
+          isOpen={isViewPopupOpen}
           name='show'
           card={selectedCard}
           onClose={closeAllPopups}

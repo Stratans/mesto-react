@@ -3,26 +3,26 @@ import PopupWithForm from './PopupWithForm'
 
 
 /* Попап "Редактировать профиль" */
-function EditAvatarPopup(props) {
+function EditAvatarPopup({onUpdateAvatar, isOpen, onClose, buttonText}) {
 
 	const avatarRef = useRef();
 
 	function handleSubmit(evt) {
 		evt.preventDefault()
-		props.onUpdateAvatar(avatarRef.current.value)
+		onUpdateAvatar(avatarRef.current.value)
 	};
 
 	useEffect(() => {
 		avatarRef.current.value = ''
-	}, [props.isOpen]);
+	}, [isOpen]);
 
 	return (
 		<PopupWithForm
 			name='avatar'
 			title='Обновить аватар'
-			isOpen={props.isOpen}
-			onClose={props.onClose}
-			buttonText={props.buttonText}
+			isOpen={isOpen}
+			onClose={onClose}
+			buttonText={buttonText}
 			onSubmit={handleSubmit}
 		>
 			<input

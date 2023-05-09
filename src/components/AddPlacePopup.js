@@ -3,7 +3,7 @@ import PopupWithForm from './PopupWithForm'
 
 
 /* Попап "Добавление места" */
-function AddPlacePopup(props) {
+function AddPlacePopup({onAddPlace, isOpen, onClose}) {
 
 	const [name, setName] = useState('');
 	const [link, setLink] = useState('');
@@ -18,21 +18,21 @@ function AddPlacePopup(props) {
 
 	function handleSubmit(evt) {
 		evt.preventDefault()
-		props.onAddPlace({ name, link })
+		onAddPlace({ name, link })
 	};
 
 	useEffect(() => {
 		setName('')
 		setLink('')
-	}, [props.isOpen]);
+	}, [isOpen]);
 
 	return (
 		<PopupWithForm
 			onSubmit={handleSubmit}
 			name='add'
 			title='Добавление места'
-			isOpen={props.isOpen && 'popup_opened'}
-			onClose={props.onClose}
+			isOpen={isOpen && 'popup_opened'}
+			onClose={onClose}
 			buttonText='Создать'
 		>
 			<input
